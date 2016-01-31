@@ -10,6 +10,8 @@ public class RecorderInput : MonoBehaviour {
   public float lowNote = 1244.51f;
   public float tolerance = 100f;
 
+  float maxFrequency = 0.0f;
+
   public bool IsInitialized {
     get {
       return initialized;
@@ -41,11 +43,11 @@ public class RecorderInput : MonoBehaviour {
   float GetFrequency() {
     float frequency = 0.0f;
     audioSource.GetSpectrumData(spectrum, 0, FFTWindow.BlackmanHarris);
-    float max = 0.0f;
     int index = 0;
+    maxFrequency = 0.0f;
     for (int i = 1; i < SAMPLES; i++) {
-      if (max < spectrum[i-1]) {
-        max = spectrum[i-1];
+      if (maxFrequency < spectrum[i-1]) {
+        maxFrequency = spectrum[i-1];
         index = i;
       }
     }
@@ -54,7 +56,7 @@ public class RecorderInput : MonoBehaviour {
   }
 
   bool noteTriggered(float note) {
-    return frequency > note - tolerance && frequency < note + tolerance;
+    return frequency > note - tolerance && frequency < note + tolerance && maxFrequency > 0.3;
   }
 
   public bool lowTriggered() {
