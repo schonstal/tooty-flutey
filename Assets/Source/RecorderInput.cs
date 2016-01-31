@@ -49,13 +49,13 @@ public class RecorderInput : MonoBehaviour {
     if (highNote <= 0) {
       if (Input.GetKeyDown("space")) {
         highNote = GetFrequency();
-        highThreshold = maxFrequency / 4.0f;
+        highThreshold = maxFrequency * 0.1f;
       }
       return;
     } else if (lowNote <= 0) {
       if (Input.GetKeyDown("space")) {
         lowNote = GetFrequency();
-        lowThreshold = maxFrequency / 4.0f;
+        lowThreshold = maxFrequency * 0.1f;
       }
       return;
     }
