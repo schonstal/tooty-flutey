@@ -9,6 +9,7 @@ public class RecorderInput : MonoBehaviour {
   public float highNote = 1661.22f;
   public float lowNote = 1244.51f;
   public float tolerance = 100f;
+  public float threshold = 0.01f;
 
   float maxFrequency = 0.0f;
 
@@ -39,7 +40,7 @@ public class RecorderInput : MonoBehaviour {
     int index = 0;
     maxFrequency = 0.0f;
     for (int i = 1; i < SAMPLES; i++) {
-      if (maxFrequency < spectrum[i-1]) {
+      if (maxFrequency < spectrum[i-1] && spectrum[i-1] > threshold) {
         maxFrequency = spectrum[i-1];
         index = i;
       }
@@ -49,7 +50,7 @@ public class RecorderInput : MonoBehaviour {
   }
 
   bool noteTriggered(float note) {
-    return frequency > note - tolerance && frequency < note + tolerance && maxFrequency > 0.0005;
+    return frequency > note - tolerance && frequency < note + tolerance;
   }
 
   public bool lowTriggered() {
