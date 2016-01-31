@@ -8,15 +8,40 @@ ModelImporter:
     100000: tile_basic
     100002: tile_wall01
     100004: //RootNode
+    100006: tile_wall02
+    100008: tile_wall03
+    100010: tile_wall04
+    100012: tile_wall05
+    100014: tile_wall06
     400000: tile_basic
     400002: tile_wall01
     400004: //RootNode
+    400006: tile_wall02
+    400008: tile_wall03
+    400010: tile_wall04
+    400012: tile_wall05
+    400014: tile_wall06
     2300000: tile_basic
     2300002: tile_wall01
+    2300004: tile_wall02
+    2300006: tile_wall03
+    2300008: tile_wall04
+    2300010: tile_wall05
+    2300012: tile_wall06
     3300000: tile_basic
     3300002: tile_wall01
+    3300004: tile_wall02
+    3300006: tile_wall03
+    3300008: tile_wall04
+    3300010: tile_wall05
+    3300012: tile_wall06
     4300000: tile_wall01
     4300002: tile_basic
+    4300004: tile_wall02
+    4300006: tile_wall03
+    4300008: tile_wall04
+    4300010: tile_wall06
+    4300012: tile_wall05
     7400000: Default Take
     9500000: //RootNode
   materials:
