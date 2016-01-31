@@ -38,17 +38,24 @@ public class RecorderInput : MonoBehaviour {
   }
 
   void Update() {
+    if (Input.GetKeyDown("r")) {
+      highNote = 0;
+      lowNote = 0;
+      highThreshold = 0;
+      lowThreshold = 0;
+      initialized = false;
+    }
     if (!initialized) return;
     if (highNote <= 0) {
       if (Input.GetKeyDown("space")) {
         highNote = GetFrequency();
-        highThreshold = maxFrequency / 2.0f;
+        highThreshold = maxFrequency / 4.0f;
       }
       return;
     } else if (lowNote <= 0) {
       if (Input.GetKeyDown("space")) {
         lowNote = GetFrequency();
-        lowThreshold = maxFrequency / 2.0f;
+        lowThreshold = maxFrequency / 4.0f;
       }
       return;
     }
