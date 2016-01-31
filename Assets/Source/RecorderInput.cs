@@ -6,16 +6,22 @@ public class RecorderInput : MonoBehaviour {
   public static int SAMPLES = 8192;
   public static int SAMPLE_RATE = 44100;
 
-  public float highNote = 1661.22f;
-  public float lowNote = 1244.51f;
   public float tolerance = 100f;
-  public float threshold = 0.01f;
+  public float threshold = 0.001f;
 
+  float highNote = 0f;
+  float lowNote = 0f;
   float maxFrequency = 0.0f;
 
   public bool IsInitialized {
     get {
       return initialized;
+    }
+  }
+  
+  public bool IsCalibrated {
+    get {
+      return highNote > 0 && lowNote > 0;
     }
   }
 
@@ -31,6 +37,17 @@ public class RecorderInput : MonoBehaviour {
 
   void Update() {
     if (!initialized) return;
+    if (highNote <= 0) {
+      if (Input.GetKey("space")) {
+        highNote = GetFrequency();
+      }
+      return;
+    } else if (lowNote <= 0) {
+      if (Input.GetKey("space")) {
+        lowNote = GetFrequency();
+      }
+      return;
+    }
     frequency = GetFrequency();
   }
 
@@ -71,5 +88,11 @@ public class RecorderInput : MonoBehaviour {
     audioSource.loop = true;
     while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) break;}
     audioSource.Play();
+  }
+
+
+  void OnGUI() {
+    if (!IsInitialized) return;
+    GUI.Label(new Rect(0,0, Screen.width, Screen.height), string.Format("While {0} the thumb hole, play a note and press space", highNote > 0 ? "covering" : "opening"));
   }
 }
