@@ -38,12 +38,13 @@ public class RecorderInput : MonoBehaviour {
   void Update() {
     if (!initialized) return;
     if (highNote <= 0) {
-      if (Input.GetKey("space")) {
+      if (Input.GetKeyDown("space")) {
         highNote = GetFrequency();
+        Debug.Log("yo");
       }
       return;
     } else if (lowNote <= 0) {
-      if (Input.GetKey("space")) {
+      if (Input.GetKeyDown("space")) {
         lowNote = GetFrequency();
       }
       return;
@@ -93,6 +94,7 @@ public class RecorderInput : MonoBehaviour {
 
   void OnGUI() {
     if (!IsInitialized) return;
+    if (IsCalibrated) return;
     GUI.Label(new Rect(0,0, Screen.width, Screen.height), string.Format("While {0} the thumb hole, play a note and press space", highNote > 0 ? "covering" : "opening"));
   }
 }

@@ -63,7 +63,7 @@ public class RecorderTilt : MonoBehaviour {
         GUI.Label(new Rect(0,20 * (i+1), Screen.width, Screen.height), string.Format("[{0}] {1}", i, Microphone.devices[i]));
       }
       return;
-    } else if (!zRecorder.IsInitialized && zRecorder.IsCalibrated) {
+    } else if (!zRecorder.IsInitialized && xRecorder.IsCalibrated) {
       GUI.Label(new Rect(0,0, Screen.width, Screen.height), "Select Z Device (press key)");
       for (int i = 0; i < Microphone.devices.Length; i++) {
         GUI.Label(new Rect(0,20 * (i+1), Screen.width, Screen.height), string.Format("[{0}] {1}", i, Microphone.devices[i]));
