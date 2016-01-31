@@ -83,7 +83,6 @@ public class RecorderInput : MonoBehaviour {
   }
 
   public void initialize(string device) {
-    initialized = true;
     deviceName = device;
     var iteration = 0;
     if(!Microphone.devices.Contains(deviceName)) return;
@@ -92,6 +91,7 @@ public class RecorderInput : MonoBehaviour {
     audioSource.loop = true;
     while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) break;}
     audioSource.Play();
+    initialized = true;
   }
 
 
