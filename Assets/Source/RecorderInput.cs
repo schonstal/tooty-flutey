@@ -7,11 +7,13 @@ public class RecorderInput : MonoBehaviour {
   public static int SAMPLE_RATE = 44100;
 
   public float tolerance = 100f;
-  public float threshold = 0.001f;
 
   float highNote = 0f;
   float lowNote = 0f;
   float maxFrequency = 0.0f;
+
+  float highThreshold = 0.001f;
+  float lowThreshold = 0.001f;
 
   public bool IsInitialized {
     get {
@@ -40,12 +42,13 @@ public class RecorderInput : MonoBehaviour {
     if (highNote <= 0) {
       if (Input.GetKeyDown("space")) {
         highNote = GetFrequency();
-        Debug.Log("yo");
+        highThreshold = maxFrequency / 2.0f;
       }
       return;
     } else if (lowNote <= 0) {
       if (Input.GetKeyDown("space")) {
         lowNote = GetFrequency();
+        lowThreshold = maxFrequency / 2.0f;
       }
       return;
     }
@@ -58,7 +61,7 @@ public class RecorderInput : MonoBehaviour {
     int index = 0;
     maxFrequency = 0.0f;
     for (int i = 1; i < SAMPLES; i++) {
-      if (maxFrequency < spectrum[i-1] && spectrum[i-1] > threshold) {
+      if (maxFrequency < spectrum[i-1]) {
         maxFrequency = spectrum[i-1];
         index = i;
       }
@@ -72,11 +75,11 @@ public class RecorderInput : MonoBehaviour {
   }
 
   public bool lowTriggered() {
-    return noteTriggered(highNote);
+    return noteTriggered(highNote) && (maxFrequency > lowThreshold);
   }
 
   public bool highTriggered() {
-    return noteTriggered(lowNote);
+    return noteTriggered(lowNote) && (maxFrequency > highThreshold);
   }
 
   public void initialize(string device) {
