@@ -47,7 +47,7 @@ public class RecorderInput : MonoBehaviour {
     }
     if (!initialized) return;
 
-    frequncy = GetFrequency();
+    frequency = GetFrequency();
 
     if (highNote <= 0) {
       if (Input.GetKeyDown("space")) {
