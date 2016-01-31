@@ -45,6 +45,7 @@ public class RecorderInput : MonoBehaviour {
       }
     }
     frequency = index * SAMPLE_RATE / SAMPLES;
+    Debug.Log(maxFrequency);
     return frequency;
   }
 

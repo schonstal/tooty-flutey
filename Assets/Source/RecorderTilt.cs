@@ -57,6 +57,8 @@ public class RecorderTilt : MonoBehaviour {
   }
 
   void OnGUI() {
+    GUI.Label(new Rect(0,Screen.height - 20, Screen.width, Screen.height), string.Format("X: {0}", xRecorder.maxFrequency));
+    GUI.Label(new Rect(0,Screen.height - 40, Screen.width, Screen.height), string.Format("Z: {0}", zRecorder.maxFrequency));
     if (!xRecorder.IsInitialized) {
       GUI.Label(new Rect(0,0, Screen.width, Screen.height), "Select X Device (press key)");
       for (int i = 0; i < Microphone.devices.Length; i++) {
