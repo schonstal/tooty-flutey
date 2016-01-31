@@ -16,7 +16,6 @@ public class RecorderTilt : MonoBehaviour {
   }
 
   void Update() {
-    /*
     if (!xRecorder.IsInitialized) {
       for (int i = 0; i < Microphone.devices.Length - 1; i++) {
         if (Input.GetKeyDown(i.ToString())) {
@@ -31,7 +30,7 @@ public class RecorderTilt : MonoBehaviour {
         }
       }
       return;
-    }*/
+    }
 
     var xRotation = 0;
     if (xRecorder.lowTriggered() || Input.GetKey("up")) {
