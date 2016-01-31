@@ -8,12 +8,15 @@ public class RecorderTilt : MonoBehaviour {
   RecorderInput xRecorder;
   RecorderInput zRecorder;
 
+  Vector3 rotationTarget = new Vector3(0, 0, 0);
+
   void Start() {
     xRecorder = xRotator.GetComponent<RecorderInput>();
     zRecorder = zRotator.GetComponent<RecorderInput>();
   }
 
   void Update() {
+    /*
     if (!xRecorder.IsInitialized) {
       for (int i = 0; i < Microphone.devices.Length - 1; i++) {
         if (Input.GetKeyDown(i.ToString())) {
@@ -28,23 +31,30 @@ public class RecorderTilt : MonoBehaviour {
         }
       }
       return;
-    }
+    }*/
 
     var xRotation = 0;
-    if (xRecorder.lowTriggered()) {
-      xRotation = 10;
-    } else if (xRecorder.highTriggered()) {
-      xRotation = -10;
+    if (xRecorder.lowTriggered() || Input.GetKey("up")) {
+      xRotation = 20;
+    } else if (xRecorder.highTriggered() || Input.GetKey("down")) {
+      xRotation = -20;
+    } else {
+      xRotation = 0;
     }
 
     var zRotation = 0;
-    if (zRecorder.lowTriggered()) {
-      zRotation = 10;
-    } else if (zRecorder.highTriggered()) {
-      zRotation = -10;
+    if (zRecorder.lowTriggered() || Input.GetKey("left")) {
+      zRotation = 20;
+    } else if (zRecorder.highTriggered() || Input.GetKey("right")) {
+      zRotation = -20;
+    } else {
+      zRotation = 0;
     }
-    
-    transform.eulerAngles = new Vector3(xRotation, 0, zRotation);
+
+    rotationTarget = new Vector3(xRotation, 0, zRotation);
+
+    Quaternion target = Quaternion.Euler(xRotation, 0, zRotation);
+    transform.rotation = Quaternion.Lerp(transform.rotation, target, 0.1f);
   }
 
   void OnGUI() {
