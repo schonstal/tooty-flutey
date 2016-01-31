@@ -10,7 +10,7 @@ public class RecorderInput : MonoBehaviour {
   public float lowNote = 1244.51f;
   public float tolerance = 100f;
 
-  public float maxFrequency = 0.0f;
+  float maxFrequency = 0.0f;
 
   public bool IsInitialized {
     get {
@@ -49,7 +49,7 @@ public class RecorderInput : MonoBehaviour {
   }
 
   bool noteTriggered(float note) {
-    return frequency > note - tolerance && frequency < note + tolerance;
+    return frequency > note - tolerance && frequency < note + tolerance && maxFrequency > 0.015;
   }
 
   public bool lowTriggered() {
