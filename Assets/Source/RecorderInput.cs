@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class RecorderInput : MonoBehaviour {
   public static int SAMPLES = 8192;
@@ -15,11 +16,12 @@ public class RecorderInput : MonoBehaviour {
   float frequency = 0.0f;
 
   void Start() {
+    var iteration = 0;
+    if(!Microphone.devices.Contains(deviceName)) return;
     audioSource = GetComponent<AudioSource>();
     audioSource.clip = Microphone.Start(deviceName, true, 1, SAMPLE_RATE);
     audioSource.loop = true;
-    audioSource.mute = true;
-    while(!(Microphone.GetPosition(deviceName) > 0)) {}
+    while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) return;}
     audioSource.Play();
   }
 
@@ -46,11 +48,11 @@ public class RecorderInput : MonoBehaviour {
     return frequency > note - tolerance && frequency < note + tolerance;
   }
 
-  bool lowTriggered() {
+  public bool lowTriggered() {
     return noteTriggered(highNote);
   }
 
-  bool highTriggered() {
+  public bool highTriggered() {
     return noteTriggered(lowNote);
   }
 
