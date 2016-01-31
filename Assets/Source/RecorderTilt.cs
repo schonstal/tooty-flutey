@@ -32,6 +32,8 @@ public class RecorderTilt : MonoBehaviour {
       return;
     }
 
+    if (!(xRecorder.IsCalibrated && zRecorder.IsCalibrated)) return;
+
     var xRotation = 0;
     if (xRecorder.lowTriggered() || Input.GetKey("up")) {
       xRotation = 20;
