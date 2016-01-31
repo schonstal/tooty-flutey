@@ -10,7 +10,7 @@ public class RecorderInput : MonoBehaviour {
   public float lowNote = 1244.51f;
   public float tolerance = 100f;
 
-  float maxFrequency = 0.0f;
+  public float maxFrequency = 0.0f;
 
   public bool IsInitialized {
     get {
@@ -45,7 +45,6 @@ public class RecorderInput : MonoBehaviour {
       }
     }
     frequency = index * SAMPLE_RATE / SAMPLES;
-    Debug.Log(maxFrequency);
     return frequency;
   }
 
