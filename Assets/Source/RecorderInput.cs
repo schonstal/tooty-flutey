@@ -26,13 +26,6 @@ public class RecorderInput : MonoBehaviour {
   float frequency = 0.0f;
 
   void Start() {
-    var iteration = 0;
-    if(!Microphone.devices.Contains(deviceName)) return;
-    audioSource = GetComponent<AudioSource>();
-    audioSource.clip = Microphone.Start(deviceName, true, 1, SAMPLE_RATE);
-    audioSource.loop = true;
-    while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) break;}
-    audioSource.Play();
   }
 
   void Update() {
@@ -70,5 +63,12 @@ public class RecorderInput : MonoBehaviour {
   public void initialize(string device) {
     initialized = true;
     deviceName = device;
+    var iteration = 0;
+    if(!Microphone.devices.Contains(deviceName)) return;
+    audioSource = GetComponent<AudioSource>();
+    audioSource.clip = Microphone.Start(deviceName, true, 1, SAMPLE_RATE);
+    audioSource.loop = true;
+    while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) break;}
+    audioSource.Play();
   }
 }
