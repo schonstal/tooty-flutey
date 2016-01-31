@@ -50,14 +50,14 @@ public class RecorderInput : MonoBehaviour {
       if (Input.GetKeyDown("space")) {
         highNote = GetFrequency();
         highThreshold = maxFrequency * 0.1f;
-        Debug.Log("High Note: {0}, High Threshold: {0}", highNote, highThreshold);
+        Debug.Log(string.Format("High Note: {0}, High Threshold: {0}", highNote, highThreshold));
       }
       return;
     } else if (lowNote <= 0) {
       if (Input.GetKeyDown("space")) {
         lowNote = GetFrequency();
         lowThreshold = maxFrequency * 0.1f;
-        Debug.Log("Low Note: {0}, Low Threshold: {0}", lowNote, lowThreshold);
+        Debug.Log(string.Format("Low Note: {0}, Low Threshold: {0}", lowNote, lowThreshold));
       }
       return;
     }
