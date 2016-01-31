@@ -21,7 +21,7 @@ public class RecorderInput : MonoBehaviour {
     audioSource = GetComponent<AudioSource>();
     audioSource.clip = Microphone.Start(deviceName, true, 1, SAMPLE_RATE);
     audioSource.loop = true;
-    while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) return;}
+    while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) break;}
     audioSource.Play();
   }
 
