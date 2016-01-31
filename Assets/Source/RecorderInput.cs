@@ -49,7 +49,7 @@ public class RecorderInput : MonoBehaviour {
   }
 
   bool noteTriggered(float note) {
-    return frequency > note - tolerance && frequency < note + tolerance && maxFrequency > 0.3;
+    return frequency > note - tolerance && frequency < note + tolerance;
   }
 
   public bool lowTriggered() {
