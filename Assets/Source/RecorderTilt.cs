@@ -10,29 +10,34 @@ public class RecorderTilt : MonoBehaviour {
 
   Vector3 rotationTarget = new Vector3(0, 0, 0);
 
+  bool debugMode = false;
+
   void Start() {
     xRecorder = xRotator.GetComponent<RecorderInput>();
     zRecorder = zRotator.GetComponent<RecorderInput>();
   }
 
   void Update() {
-    if (!xRecorder.IsInitialized) {
-      for (int i = 0; i < Microphone.devices.Length; i++) {
-        if (Input.GetKeyDown(i.ToString())) {
-          xRecorder.initialize(Microphone.devices[i]);
+    if (Input.GetKeyDown("d")) debugMode = !debugMode;
+    if(!debugMode) {
+      if (!xRecorder.IsInitialized) {
+        for (int i = 0; i < Microphone.devices.Length; i++) {
+          if (Input.GetKeyDown(i.ToString())) {
+            xRecorder.initialize(Microphone.devices[i]);
+          }
         }
-      }
-      return;
-    } else if (!zRecorder.IsInitialized) {
-      for (int i = 0; i < Microphone.devices.Length; i++) {
-        if (Input.GetKeyDown(i.ToString())) {
-          zRecorder.initialize(Microphone.devices[i]);
+        return;
+      } else if (!zRecorder.IsInitialized) {
+        for (int i = 0; i < Microphone.devices.Length; i++) {
+          if (Input.GetKeyDown(i.ToString())) {
+            zRecorder.initialize(Microphone.devices[i]);
+          }
         }
+        return;
       }
-      return;
-    }
 
-    if (!(xRecorder.IsCalibrated && zRecorder.IsCalibrated)) return;
+      if (!(xRecorder.IsCalibrated && zRecorder.IsCalibrated)) return;
+    }
 
     var xRotation = 0;
     if (xRecorder.lowTriggered() || Input.GetKey("up")) {
@@ -62,13 +67,19 @@ public class RecorderTilt : MonoBehaviour {
     if (!xRecorder.IsInitialized) {
       GUI.Label(new Rect(0,0, Screen.width, Screen.height), "Select X Device (press key)");
       for (int i = 0; i < Microphone.devices.Length; i++) {
-        GUI.Label(new Rect(0,20 * (i+1), Screen.width, Screen.height), string.Format("[{0}] {1}", i, Microphone.devices[i]));
+        GUI.Label(
+          new Rect(0, 20 * (i+1), Screen.width, Screen.height),
+          string.Format("[{0}] {1}", i, Microphone.devices[i])
+        );
       }
       return;
     } else if (!zRecorder.IsInitialized && xRecorder.IsCalibrated) {
       GUI.Label(new Rect(0,0, Screen.width, Screen.height), "Select Z Device (press key)");
       for (int i = 0; i < Microphone.devices.Length; i++) {
-        GUI.Label(new Rect(0,20 * (i+1), Screen.width, Screen.height), string.Format("[{0}] {1}", i, Microphone.devices[i]));
+        GUI.Label(
+          new Rect(0, 20 * (i+1), Screen.width, Screen.height),
+          string.Format("[{0}] {1}", i, Microphone.devices[i])
+        );
       }
       return;
     }

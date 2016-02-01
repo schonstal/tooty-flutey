@@ -53,14 +53,12 @@ public class RecorderInput : MonoBehaviour {
       if (Input.GetKeyDown("space")) {
         highNote = frequency;
         highThreshold = maxFrequency * 0.1f;
-        Debug.Log(string.Format("High Note: {0}, High Threshold: {1}", highNote, highThreshold));
       }
       return;
     } else if (lowNote <= 0) {
       if (Input.GetKeyDown("space")) {
         lowNote = frequency;
         lowThreshold = maxFrequency * 0.1f;
-        Debug.Log(string.Format("Low Note: {0}, Low Threshold: {1}", lowNote, lowThreshold));
       }
       return;
     }
@@ -82,6 +80,7 @@ public class RecorderInput : MonoBehaviour {
   }
 
   bool noteTriggered(float note) {
+    if(!IsInitialized) return false;
     return frequency > note - tolerance && frequency < note + tolerance;
   }
 
@@ -105,10 +104,13 @@ public class RecorderInput : MonoBehaviour {
     initialized = true;
   }
 
-
   void OnGUI() {
     if (!IsInitialized) return;
     if (IsCalibrated) return;
-    GUI.Label(new Rect(0,0, Screen.width, Screen.height), string.Format("While {0} the thumb hole, play a note and press space", highNote > 0 ? "covering" : "opening"));
+    GUI.Label(
+      new Rect(0,0, Screen.width, Screen.height),
+      string.Format("While {0} the thumb hole, play a note and press space",
+                    highNote > 0 ? "covering" : "opening")
+    );
   }
 }
