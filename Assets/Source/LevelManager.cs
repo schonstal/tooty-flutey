@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour {
   }
 
   void Update() {
-    if (Input.GetKeyDown("space")) nextLevel();
+    if (Input.GetKeyDown("q")) nextLevel();
   }
 
   public void nextLevel() {
