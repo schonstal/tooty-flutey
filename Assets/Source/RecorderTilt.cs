@@ -12,6 +12,8 @@ public class RecorderTilt : MonoBehaviour {
 
   bool debugMode = false;
 
+  float startTime = 0f;
+
   void Start() {
     xRotator = GameObject.Find("X Rotator");
     zRotator = GameObject.Find("Z Rotator");
@@ -20,6 +22,8 @@ public class RecorderTilt : MonoBehaviour {
   }
 
   void Update() {
+    startTime += Time.deltaTime;
+
     if (Input.GetKeyDown("d")) debugMode = !debugMode;
     if(!debugMode) {
       if (!xRecorder.IsInitialized) {
@@ -40,6 +44,8 @@ public class RecorderTilt : MonoBehaviour {
 
       if (!(xRecorder.IsCalibrated && zRecorder.IsCalibrated)) return;
     }
+
+    if(startTime < 1.75) return;
 
     var xRotation = 0;
     if (xRecorder.lowTriggered() || Input.GetKey("up")) {

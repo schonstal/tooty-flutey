@@ -7,7 +7,7 @@ public class RecorderInput : MonoBehaviour {
   public static int SAMPLE_RATE = 44100;
 
   public float tolerance = 100f;
-  public bool enabled = false;
+  public bool enabled = true;
 
   float highNote = 0f;
   float lowNote = 0f;
