@@ -2,10 +2,14 @@
 using System.Collections;
 
 public class TweenIn : MonoBehaviour {
+  float originalY = 0;
+
   void Awake() {
+    originalY = transform.position.y;
+
     transform.position = new Vector3(
       transform.position.x,
-      -4,
+      originalY - 4,
       transform.position.z
     );
 
@@ -14,7 +18,7 @@ public class TweenIn : MonoBehaviour {
     float tweenTime = 1f + Random.value * 0.5f;
 
     iTween.MoveTo(gameObject, iTween.Hash(
-      "y", 0,
+      "y", originalY,
       "time", tweenTime,
       "easetype", "easeOutElastic"
     ));
