@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class RecorderTilt : MonoBehaviour {
-  public GameObject xRotator;
-  public GameObject zRotator;
+  GameObject xRotator;
+  GameObject zRotator;
 
   RecorderInput xRecorder;
   RecorderInput zRecorder;
@@ -13,6 +13,8 @@ public class RecorderTilt : MonoBehaviour {
   bool debugMode = false;
 
   void Start() {
+    xRotator = GameObject.Find("X Rotator");
+    zRotator = GameObject.Find("Z Rotator");
     xRecorder = xRotator.GetComponent<RecorderInput>();
     zRecorder = zRotator.GetComponent<RecorderInput>();
   }
