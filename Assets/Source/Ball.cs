@@ -14,23 +14,17 @@ public class Ball : MonoBehaviour {
 
   LevelManager levelManager;
 
-  void Start() {
+  void Awake() {
     xRotator = GameObject.Find("X Rotator");
     zRotator = GameObject.Find("Z Rotator");
     xRecorder = xRotator.GetComponent<RecorderInput>();
     zRecorder = zRotator.GetComponent<RecorderInput>();
 
-    spawner = GameObject.Find("Respawner");
+    spawner = new GameObject();
+    spawner.transform.position = transform.position;
+    spawner.transform.parent = transform.parent;
 
     levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
-  }
-
-	void Awake() {
-    originalPosition = new Vector3(
-      transform.position.x,
-      transform.position.y,
-      transform.position.z
-    );
 	}
 
 	void Update() {
