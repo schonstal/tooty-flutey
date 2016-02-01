@@ -46,8 +46,5 @@ public class Ball : MonoBehaviour {
 	}
 
   void OnCollisionEnter(Collision collision) {
-    if (collision.transform.name == "Goal") {
-      levelManager.nextLevel();
-    }
   }
 }
