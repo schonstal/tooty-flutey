@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class TweenIn : MonoBehaviour {
-  void Start() {
+  void Awake() {
     transform.position = new Vector3(
       transform.position.x,
       -4,
