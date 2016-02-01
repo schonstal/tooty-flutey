@@ -13,6 +13,5 @@ public class Goal : MonoBehaviour {
   }
 
   void OnCollisionEnter(Collision collision) {
-    if (collision.collider.isTrigger) levelManager.nextLevel();
   }
 }

@@ -12,6 +12,8 @@ public class Ball : MonoBehaviour {
 
   Vector3 originalPosition;
 
+  LevelManager levelManager;
+
   void Start() {
     xRotator = GameObject.Find("X Rotator");
     zRotator = GameObject.Find("Z Rotator");
@@ -19,6 +21,8 @@ public class Ball : MonoBehaviour {
     zRecorder = zRotator.GetComponent<RecorderInput>();
 
     spawner = GameObject.Find("Spawner");
+
+    levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
   }
 
 	void Awake() {
@@ -42,5 +46,8 @@ public class Ball : MonoBehaviour {
 	}
 
   void OnCollisionEnter(Collision collision) {
+    if (collision.transform.name == "Goal") {
+      levelManager.nextLevel();
+    }
   }
 }
