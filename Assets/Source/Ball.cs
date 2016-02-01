@@ -20,7 +20,7 @@ public class Ball : MonoBehaviour {
     xRecorder = xRotator.GetComponent<RecorderInput>();
     zRecorder = zRotator.GetComponent<RecorderInput>();
 
-    spawner = GameObject.Find("Spawner");
+    spawner = GameObject.Find("Respawner");
 
     levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
   }
