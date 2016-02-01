@@ -7,7 +7,6 @@ public class RecorderInput : MonoBehaviour {
   public static int SAMPLE_RATE = 44100;
 
   public float tolerance = 100f;
-  public bool enabled = true;
 
   float highNote = 0f;
   float lowNote = 0f;
@@ -86,11 +85,11 @@ public class RecorderInput : MonoBehaviour {
   }
 
   public bool lowTriggered() {
-    return enabled && noteTriggered(highNote) && (maxFrequency > lowThreshold);
+    return noteTriggered(highNote) && (maxFrequency > lowThreshold);
   }
 
   public bool highTriggered() {
-    return enabled && noteTriggered(lowNote) && (maxFrequency > highThreshold);
+    return noteTriggered(lowNote) && (maxFrequency > highThreshold);
   }
 
   public void initialize(string device) {
