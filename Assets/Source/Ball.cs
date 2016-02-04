@@ -14,6 +14,8 @@ public class Ball : MonoBehaviour {
 
   LevelManager levelManager;
 
+  Rigidbody rigidbody;
+
   void Awake() {
     xRotator = GameObject.Find("X Rotator");
     zRotator = GameObject.Find("Z Rotator");
@@ -25,6 +27,8 @@ public class Ball : MonoBehaviour {
     spawner.transform.parent = transform.parent;
 
     levelManager = GameObject.Find("LevelManager").GetComponent<LevelManager>();
+
+    rigidbody = GetComponent<Rigidbody>();
 	}
 
 	void Update() {
@@ -35,7 +39,8 @@ public class Ball : MonoBehaviour {
         spawner.transform.position.z
       );
 
-      GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
+      rigidbody.velocity = Vector3.zero;
+      rigidbody.angularVelocity = Vector3.zero;
     } 
 	}
 
