@@ -13,6 +13,8 @@ ModelImporter:
     100010: tile_wall04
     100012: tile_wall05
     100014: tile_wall06
+    100016: tile_wall07
+    100018: tile_wall08
     400000: tile_basic
     400002: tile_wall01
     400004: //RootNode
@@ -21,6 +23,8 @@ ModelImporter:
     400010: tile_wall04
     400012: tile_wall05
     400014: tile_wall06
+    400016: tile_wall07
+    400018: tile_wall08
     2300000: tile_basic
     2300002: tile_wall01
     2300004: tile_wall02
@@ -28,6 +32,8 @@ ModelImporter:
     2300008: tile_wall04
     2300010: tile_wall05
     2300012: tile_wall06
+    2300014: tile_wall07
+    2300016: tile_wall08
     3300000: tile_basic
     3300002: tile_wall01
     3300004: tile_wall02
@@ -35,6 +41,8 @@ ModelImporter:
     3300008: tile_wall04
     3300010: tile_wall05
     3300012: tile_wall06
+    3300014: tile_wall07
+    3300016: tile_wall08
     4300000: tile_wall01
     4300002: tile_basic
     4300004: tile_wall02
@@ -42,6 +50,8 @@ ModelImporter:
     4300008: tile_wall04
     4300010: tile_wall06
     4300012: tile_wall05
+    4300014: tile_wall07
+    4300016: tile_wall08
     7400000: Default Take
     9500000: //RootNode
   materials:
