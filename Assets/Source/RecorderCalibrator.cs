@@ -73,7 +73,7 @@ public class RecorderCalibrator : MonoBehaviour {
     for (int i = 0; i < Microphone.devices.Length; i++) {
       GUI.Label(
         new Rect(0, 100 * (i+1), Screen.width, Screen.height),
-        string.Format("[{0}] {1}", i, Microphone.devices[i].ToUpper()),
+        string.Format("[{0}] {1}", i, Microphone.devices[i].ToUpper().Split(new char[] {'('})[0]),
         style
       );
     }
