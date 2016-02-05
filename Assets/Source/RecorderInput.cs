@@ -27,6 +27,12 @@ public class RecorderInput : MonoBehaviour {
     }
   }
 
+  public bool HasHighNote {
+    get {
+      return highNote > 0;
+    }
+  }
+
   bool initialized = false;
   string deviceName = "Princess";
 
@@ -44,6 +50,7 @@ public class RecorderInput : MonoBehaviour {
       highThreshold = 0;
       lowThreshold = 0;
       initialized = false;
+      Microphone.End(deviceName);
     }
     if (!initialized) return;
 
@@ -102,15 +109,5 @@ public class RecorderInput : MonoBehaviour {
     while(!(Microphone.GetPosition(deviceName) > 0)) { iteration++; if(iteration > 10000) break;}
     audioSource.Play();
     initialized = true;
-  }
-
-  void OnGUI() {
-    if (!IsInitialized) return;
-    if (IsCalibrated) return;
-    GUI.Label(
-      new Rect(0,0, Screen.width, Screen.height),
-      string.Format("While {0} the thumb hole, play a note and press space",
-                    highNote > 0 ? "covering" : "opening")
-    );
   }
 }
